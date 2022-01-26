@@ -30,12 +30,14 @@ while game_in_progress:
 
     # detect finish
     if froggy.is_at_finish():
-        scoreboard.level += 1
+        scoreboard.increment_level()
         froggy.go_to_start()
         car_shop.increase_speed()
 
     time.sleep(0.1)
     scoreboard.broadcast()
     screen.update()
+
+scoreboard.game_over()
 
 screen.exitonclick()
