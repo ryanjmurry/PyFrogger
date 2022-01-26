@@ -15,16 +15,23 @@ screen.listen()
 screen.onkey(froggy.move, "Up")
 
 game_in_progress = True
-game_loops = 0
 
 while game_in_progress:
-    if game_loops % 6 == 0:
-        car_shop.new_car()
+    car_shop.new_car()
 
     car_shop.move_cars()
 
+    # detect collision with a car
+    for car in car_shop.cars:
+        if car.distance(froggy) < 20:
+            game_in_progress = False
+
+    # detect finish
+    if froggy.is_at_finish():
+        froggy.go_to_start()
+        car_shop.level += 1
+
     time.sleep(0.1)
     screen.update()
-    game_loops += 1
 
 screen.exitonclick()

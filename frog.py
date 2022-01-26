@@ -17,3 +17,6 @@ class Frog(Turtle):
 
     def move(self):
         self.forward(MOVE_DISTANCE)
+
+    def is_at_finish(self):
+        return self.ycor() >= FINISH_LINE_Y

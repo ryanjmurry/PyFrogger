@@ -14,18 +14,20 @@ class CarShop:
     def __init__(self, level):
         self.cars = []
         self.level = level
-        self.move_distance = STARTING_MOVE_DISTANCE + (MOVE_INCREMENT * self.level)
 
     def new_car(self):
-        new_car = Turtle(shape="square")
-        new_car.right(180)
-        new_car.color(choice(COLORS))
-        new_car.pu()
-        new_car.shapesize(stretch_wid=1, stretch_len=2)
-        rand_y = randint(MIN_Y, MAX_Y)
-        new_car.goto(STARTING_X, rand_y)
-        self.cars.append(new_car)
+        rand = randint(1, 6)
+        if rand == 6:
+            new_car = Turtle(shape="square")
+            new_car.right(180)
+            new_car.color(choice(COLORS))
+            new_car.pu()
+            new_car.shapesize(stretch_wid=1, stretch_len=2)
+            rand_y = randint(MIN_Y, MAX_Y)
+            new_car.goto(STARTING_X, rand_y)
+            self.cars.append(new_car)
 
     def move_cars(self):
+        move_distance = STARTING_MOVE_DISTANCE + (MOVE_INCREMENT * self.level)
         for car in self.cars:
-            car.forward(self.move_distance)
+            car.forward(move_distance)
