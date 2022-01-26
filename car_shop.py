@@ -11,9 +11,9 @@ STARTING_X = SCREEN_W // 2
 
 
 class CarShop:
-    def __init__(self, level):
+    def __init__(self):
         self.cars = []
-        self.level = level
+        self.move_speed = STARTING_MOVE_DISTANCE
 
     def new_car(self):
         rand = randint(1, 6)
@@ -28,6 +28,8 @@ class CarShop:
             self.cars.append(new_car)
 
     def move_cars(self):
-        move_distance = STARTING_MOVE_DISTANCE + (MOVE_INCREMENT * self.level)
         for car in self.cars:
-            car.forward(move_distance)
+            car.forward(self.move_speed)
+
+    def increase_speed(self):
+        self.move_speed += MOVE_INCREMENT

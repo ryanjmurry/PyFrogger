@@ -3,13 +3,15 @@ from turtle import Screen
 from constants import SCREEN_W, SCREEN_H
 from frog import Frog
 from car_shop import CarShop
+from scoreboard import Scoreboard
 
 screen = Screen()
 screen.tracer(0)
 screen.setup(width=SCREEN_W, height=SCREEN_H)
 
 froggy = Frog()
-car_shop = CarShop(level=0)
+car_shop = CarShop()
+scoreboard = Scoreboard()
 
 screen.listen()
 screen.onkey(froggy.move, "Up")
@@ -28,10 +30,12 @@ while game_in_progress:
 
     # detect finish
     if froggy.is_at_finish():
+        scoreboard.level += 1
         froggy.go_to_start()
-        car_shop.level += 1
+        car_shop.increase_speed()
 
     time.sleep(0.1)
+    scoreboard.broadcast()
     screen.update()
 
 screen.exitonclick()
